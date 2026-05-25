@@ -38,26 +38,36 @@ Certifique-se de ter instalado:
 
 1. Clone o repositório e navegue até a pasta:
    ```bash
-   cd 115-DNS_Smart
+   cd /opt/115-dns_smart
    ```
 
-2. Copie o arquivo de variáveis de ambiente padrão:
+2. Prepare e valide o ambiente Docker do host (Ubuntu/Debian) para garantir que todos os serviços (`containerd.service`, `docker.socket`, `docker.service`) estejam ativos e funcionais, sem estados de falha ou conflitos de soquete:
+   ```bash
+   chmod +x scripts/prepare-docker-host.sh
+   ./scripts/prepare-docker-host.sh --add-current-user
+   ```
+   *Caso use a flag `--add-current-user`, aplique as alterações de grupo de soquete rodando no terminal:*
+   ```bash
+   newgrp docker
+   ```
+
+3. Copie o arquivo de variáveis de ambiente padrão:
    ```bash
    cp .env.example .env
    ```
 
-3. Inicie os containers com build em background:
+4. Inicie os containers com build em background:
    ```bash
    docker compose up --build -d
    ```
 
-4. Verifique se os containers estão rodando de forma saudável:
+5. Verifique se os containers estão rodando de forma saudável:
    ```bash
    docker compose ps
    ```
 
-5. Acesse o Painel de Controle no seu navegador:
-   * **URL**: `http://localhost:3000`
+6. Acesse o Painel de Controle no seu navegador:
+   * **URL**: `http://localhost:3003`
    * **Usuário Padrão**: `admin`
    * **Senha Padrão**: `dnssmart2024` (Pode ser alterada no arquivo `.env`)
 
