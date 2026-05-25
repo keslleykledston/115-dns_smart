@@ -1,0 +1,64 @@
+/* ============================================================
+ * DNS Smart Server — Micro-animations
+ * Fade-ins, slide-ups, pulse glows, loading skeletons
+ * ============================================================ */
+
+/* Global entrance animation for active views */
+.view-enter {
+  animation: view-fade-up var(--transition-normal) forwards;
+}
+
+@keyframes view-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulsing glow for health indicators */
+.pulse-glow-green {
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Shimmer Loading Skeleton */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.3) 25%,
+    rgba(51, 65, 85, 0.5) 50%,
+    rgba(30, 41, 59, 0.3) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-swipe 1.5s infinite linear;
+}
+
+@keyframes shimmer-swipe {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* Number Count-Up transition */
+.count-change {
+  animation: count-glow 400ms ease;
+}
+
+@keyframes count-glow {
+  0% { color: var(--accent-cyan); text-shadow: 0 0 8px var(--accent-cyan); }
+  100% { color: var(--text-primary); text-shadow: none; }
+}

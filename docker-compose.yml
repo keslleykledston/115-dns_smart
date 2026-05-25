@@ -1,0 +1,79 @@
+services:
+  dns-server:
+    build:
+      context: ./unbound
+      dockerfile: Dockerfile
+    container_name: dns-smart-server
+    ports:
+      - "${DNS_PORT:-53}:53/udp"
+      - "${DNS_PORT:-53}:53/tcp"
+    volumes:
+      - dns-config:/etc/unbound
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    healthcheck:
+      test: ["CMD", "unbound-control", "-c", "/etc/unbound/unbound.conf", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "${DNS_CPU_LIMIT:-2.0}"
+          memory: ${DNS_MEM_LIMIT:-512M}
+        reservations:
+          cpus: "0.5"
+          memory: 128M
+    restart: unless-stopped
+    networks:
+      - dns-net
+
+  gui:
+    build:
+      context: ./gui
+      dockerfile: Dockerfile
+    container_name: dns-smart-gui
+    user: root
+    ports:
+      - "${GUI_PORT:-3000}:3000"
+    volumes:
+      - gui-data:/app/data
+      - dns-config:/etc/unbound
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production-please}
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASS=${ADMIN_PASS:-dnssmart2024}
+      - DNS_SERVER_HOST=dns-server
+      - UNBOUND_CONFIG_DIR=/etc/unbound
+      - UNBOUND_LOG_PATH=/etc/unbound/unbound.log
+      - UNBOUND_CERTS_DIR=/etc/unbound
+      - GUI_PORT=3000
+    depends_on:
+      dns-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+    restart: unless-stopped
+    networks:
+      - dns-net
+
+volumes:
+  dns-config:
+    driver: local
+  gui-data:
+    driver: local
+
+networks:
+  dns-net:
+    driver: bridge

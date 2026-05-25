@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧬 DNS Smart Server — Advanced Management Panel</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- CSS Library -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/animations.css">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  
+  <!-- Centralized Notification Toasts -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Main SPA Layout (Hidden on Login screen) -->
+  <div id="app-container" style="display: none; width: 100%; height: 100%; display: flex;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">DS</div>
+        <div class="logo-text">DNS SMART</div>
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="#/dashboard" class="nav-item active" data-route="dashboard">
+          <span>📊</span> Dashboard
+        </a>
+        <a href="#/zones" class="nav-item" data-route="zones">
+          <span>🌐</span> Local Zones
+        </a>
+        <a href="#/logs" class="nav-item" data-route="logs">
+          <span>📋</span> Query Logs
+        </a>
+        <a href="#/forwarders" class="nav-item" data-route="forwarders">
+          <span>🔄</span> Upstream DNS
+        </a>
+        <a href="#/blocklist" class="nav-item" data-route="blocklist">
+          <span>🛡️</span> Blocklists
+        </a>
+        <a href="#/config" class="nav-item" data-route="config">
+          <span>⚙️</span> Settings
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer Server Status -->
+      <div class="glass-card" style="padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between;">
+        <span style="color: var(--text-secondary);">Server Status:</span>
+        <span id="server-status-badge" class="badge badge-online">ONLINE</span>
+      </div>
+      
+      <!-- Logout -->
+      <a href="#" id="btn-logout" class="nav-item" style="margin-top: 16px; border-left-color: var(--accent-red);">
+        <span>🚪</span> Logout
+      </a>
+    </aside>
+
+    <!-- Main Dynamic Content Frame -->
+    <main id="main-frame" class="main-content">
+      <!-- Dynamic views loaded here -->
+    </main>
+
+  </div>
+
+  <!-- Centered Login Screen Frame (Shown by default) -->
+  <div id="login-container" class="flex-center" style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; background-color: var(--bg-primary); z-index: 1500;">
+    <!-- Rendered dynamically by login.js -->
+  </div>
+
+  <!-- Dynamic Modals Container -->
+  <div id="modal-container"></div>
+
+  <!-- Centralized SPA Router Bootstrap -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

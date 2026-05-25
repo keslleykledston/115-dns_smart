@@ -1,0 +1,57 @@
+/* ============================================================
+ * DNS Smart Server — Premium Dark CSS Design Variables
+ * Cyberpunk/Sleek HSL harmonies, modern typography, glass effects
+ * ============================================================ */
+
+:root {
+  /* Premium Dark Theme variables */
+  --bg-primary: #030712;
+  --bg-secondary: #0b1120;
+  
+  /* Glassmorphism surfaces */
+  --bg-glass: rgba(15, 23, 42, 0.45);
+  --bg-glass-card: rgba(17, 24, 39, 0.65);
+  --bg-glass-hover: rgba(30, 41, 59, 0.5);
+  --border-glass: rgba(99, 179, 237, 0.12);
+  --border-glass-focus: rgba(6, 182, 212, 0.4);
+
+  /* Typography Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  
+  /* Accent Hues */
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+  --accent-yellow: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  --accent-pink: #ec4899;
+
+  /* Gradients */
+  --gradient-premium: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --gradient-cyber: linear-gradient(135deg, #8b5cf6, #ec4899);
+  --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
+  --gradient-danger: linear-gradient(135deg, #ef4444, #f59e0b);
+
+  /* Shadows and Glows */
+  --shadow-glow: 0 0 25px rgba(6, 182, 212, 0.15);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  --shadow-glow-green: 0 0 20px rgba(16, 185, 129, 0.2);
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-circle: 50%;
+
+  /* System Fonts */
+  --font-main: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Smooth Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
